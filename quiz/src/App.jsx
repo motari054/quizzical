@@ -53,8 +53,12 @@ export default function App() {
     }, 0);
     setScore(score)
     setIsSubmited(true)
-    // alert(`You scored ${score} out of ${trivia.length}`);
   }
+  
+  const everyQuestionAnswered = trivia.every(question =>
+    question.allAnswers.some(answer => answer.isHeld)
+  )
+
   function handleTryAgain(){
     fetchATriviaQuestions()
   }
@@ -76,7 +80,7 @@ export default function App() {
         {isSubmitted && (
           <div className="score--text">You scored {score} out of {trivia.length}</div>
         )}
-        <button onClick={isSubmitted ? handleTryAgain : handleSubmit}>
+        <button onClick={isSubmitted ? handleTryAgain : handleSubmit} disabled={!everyQuestionAnswered}>
           {isSubmitted ? 'Try Again' : 'Submit'}
         </button>
       </div>

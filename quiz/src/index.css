@@ -32,6 +32,9 @@
 .submit--button{
   text-align: center;
   padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .submit--button > button{
   background-color: #4D5B9E;
@@ -44,4 +47,9 @@
   font-weight: 700;
   font-size: medium;
   cursor: pointer;
+  margin-right: px;
+}
+.score--text{
+  font-weight: 600;
+  font-size: large;
 }

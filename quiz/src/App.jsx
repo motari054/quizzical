@@ -1,11 +1,18 @@
 import { Quiz } from "./components/Quiz";
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
+import Confetti from 'react-confetti'
 
 export default function App() {
-  const [trivia, setTrivia] = useState([]);
+  const [trivia, setTrivia] = useState([])
+  const [score, setScore] = useState(0)
+  const [isSubmitted, setIsSubmited] = useState(false)
 
-  useEffect(() => {
+  useEffect(()=>{
+    fetchATriviaQuestions()
+  }, [])
+
+  const fetchATriviaQuestions = (()=> {
     fetch('https://the-trivia-api.com/v2/questions')
       .then(res => res.json())
       .then(result => {
@@ -17,21 +24,23 @@ export default function App() {
           let allAnswers = [...incorrect, correct]
           const shuffleAllAnswers = allAnswers.sort((a,b)=> 0.5 - Math.random())
           allAnswers = shuffleAllAnswers
-          return { ...question, allAnswers, questionText: question.question };
+          return { ...question, allAnswers, questionText: question.question }
         });
         setTrivia(updatedTrivia);
       });
-  }, []);
+  })
+
+  
 
   function selectAnswer(questionId, answerId) {
     setTrivia(prevTrivia =>
       prevTrivia.map(question => {
-        if (question.id !== questionId) return question;
+        if (question.id !== questionId) return question
         const updatedAnswers = question.allAnswers.map(answer => ({
           ...answer,
           isHeld: answer.id === answerId
         }));
-        return { ...question, allAnswers: updatedAnswers };
+        return { ...question, allAnswers: updatedAnswers }
       })
     );
   }
@@ -40,13 +49,14 @@ export default function App() {
     event.preventDefault();
     const score = trivia.reduce((acc, question) => {
       const selectedAnswer = question.allAnswers.find(answer => answer.isHeld);
-      return acc + (selectedAnswer && selectedAnswer.answer === question.correctAnswer ? 1 : 0);
+      return acc + (selectedAnswer && selectedAnswer.answer === question.correctAnswer ? 1 : 0)
     }, 0);
-    alert(`You scored ${score} out of ${trivia.length}`);
+    setScore(score)
+    setIsSubmited(true)
+    // alert(`You scored ${score} out of ${trivia.length}`);
   }
-  function scroe(){
-    const score = trivia.reduce()
-    console.log(score)
+  function handleTryAgain(){
+    fetchATriviaQuestions()
   }
 
   return (
@@ -62,7 +72,13 @@ export default function App() {
         />
       ))}
       <div className="submit--button">
-      <button onClick={handleSubmit}>Submit</button>
+        {isSubmitted && score >= 8 ? <Confetti/> : ''}
+        {isSubmitted && (
+          <div className="score--text">You scored {score} out of {trivia.length}</div>
+        )}
+        <button onClick={isSubmitted ? handleTryAgain : handleSubmit}>
+          {isSubmitted ? 'Try Again' : 'Submit'}
+        </button>
       </div>
     </form>
     </div>

@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Quiz } from "./components/Quiz";
+import { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [trivia, setTrivia] = useState([]);
+
+  useEffect(() => {
+    fetch('https://the-trivia-api.com/v2/questions')
+      .then(res => res.json())
+      .then(result => {
+        const updatedTrivia = result.map(question => {
+          const correct = { answer: question.correctAnswer, isHeld: false, id: nanoid() };
+          const incorrect = question.incorrectAnswers.map(answer => ({
+            answer, id: nanoid(), isHeld: false
+          }));
+          const allAnswers = [...incorrect, correct];
+          return { ...question, allAnswers, questionText: question.question };
+        });
+        setTrivia(updatedTrivia);
+      });
+  }, []);
+
+  function selectAnswer(questionId, answerId) {
+    setTrivia(prevTrivia =>
+      prevTrivia.map(question => {
+        if (question.id !== questionId) return question;
+
+        const updatedAnswers = question.allAnswers.map(answer => ({
+          ...answer,
+          isHeld: answer.id === answerId
+        }));
+
+        return { ...question, allAnswers: updatedAnswers };
+      })
+    );
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {trivia.map(triviaItem => (
+        <Quiz
+          key={triviaItem.id}
+          question={triviaItem.questionText}
+          choices={triviaItem.allAnswers}
+          selectAnswer={(answerId) => selectAnswer(triviaItem.id, answerId)}
+        />
+      ))}
     </>
-  )
+  );
 }
-
-export default App

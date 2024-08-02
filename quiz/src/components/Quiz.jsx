@@ -10,7 +10,8 @@ export function Quiz(
             <ul className="quiz--answers">
                 {choices.map(choice=>{
                     const style = {
-                        backgroundColor : choice.isHeld ? '#15803d' : '#4ade80'
+                        backgroundColor : choice.isHeld && '#D6DBF5',
+                        border : choice.isHeld && 'none'
                     }
                     return (
                     <li 

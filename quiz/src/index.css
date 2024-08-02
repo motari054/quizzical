@@ -18,11 +18,12 @@
 }
 .quiz--choice{
   padding: 5px 10px;
-  color: white;
+  color: #293264;
   border-radius: 20px;
   margin-right: 10px;
   cursor: pointer;
-  background-color: lightcoral;
+  background-color: white;
+  border: solid #293264; 
 }
 .main{
   display: flex;

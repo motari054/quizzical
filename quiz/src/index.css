@@ -24,3 +24,24 @@
   cursor: pointer;
   background-color: lightcoral;
 }
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.submit--button{
+  text-align: center;
+  padding: 10px;
+}
+.submit--button > button{
+  background-color: #4D5B9E;
+  width: 120px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  font-size: medium;
+  cursor: pointer;
+}

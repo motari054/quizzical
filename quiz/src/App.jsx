@@ -14,7 +14,9 @@ export default function App() {
           const incorrect = question.incorrectAnswers.map(answer => ({
             answer, id: nanoid(), isHeld: false
           }));
-          const allAnswers = [...incorrect, correct];
+          let allAnswers = [...incorrect, correct]
+          const shuffleAllAnswers = allAnswers.sort((a,b)=> 0.5 - Math.random())
+          allAnswers = shuffleAllAnswers
           return { ...question, allAnswers, questionText: question.question };
         });
         setTrivia(updatedTrivia);
@@ -25,27 +27,45 @@ export default function App() {
     setTrivia(prevTrivia =>
       prevTrivia.map(question => {
         if (question.id !== questionId) return question;
-
         const updatedAnswers = question.allAnswers.map(answer => ({
           ...answer,
           isHeld: answer.id === answerId
         }));
-
         return { ...question, allAnswers: updatedAnswers };
       })
     );
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    const score = trivia.reduce((acc, question) => {
+      const selectedAnswer = question.allAnswers.find(answer => answer.isHeld);
+      return acc + (selectedAnswer && selectedAnswer.answer === question.correctAnswer ? 1 : 0);
+    }, 0);
+    alert(`You scored ${score} out of ${trivia.length}`);
+  }
+  function scroe(){
+    const score = trivia.reduce()
+    console.log(score)
+  }
+
   return (
     <>
-      {trivia.map(triviaItem => (
+    <div className="main">
+    <form action="">
+      {trivia.map(trivia => (
         <Quiz
-          key={triviaItem.id}
-          question={triviaItem.questionText}
-          choices={triviaItem.allAnswers}
-          selectAnswer={(answerId) => selectAnswer(triviaItem.id, answerId)}
+          key={trivia.id}
+          question={trivia.question}
+          choices={trivia.allAnswers}
+          selectAnswer={(answerId) => selectAnswer(trivia.id, answerId)}
         />
       ))}
+      <div className="submit--button">
+      <button onClick={handleSubmit}>Submit</button>
+      </div>
+    </form>
+    </div>
     </>
   );
 }

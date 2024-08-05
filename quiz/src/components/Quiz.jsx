@@ -13,8 +13,8 @@ export function Quiz({question, choices, selectAnswer, isSubmitted}){
                             (isSelected ? '#F8BCBC' : '')
                         ) 
                         : (isSelected && '#D6DBF5'),
-                        border : isSubmitted ? (isCorrect || isSelected ? 'none' : '') :
-                         (isSelected ? 'none' : '')
+                        border : isSubmitted ? (isCorrect || isSelected ? 'none' : 'solid 1px #4D5B9E') :
+                         (isSelected ? 'none' : 'solid 1px #4D5B9E')
                     }
                     return (
                     <li 

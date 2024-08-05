@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti'
 
-export function QustionsPage() {
+export default function QustionsPage() {
     const [trivia, setTrivia] = useState([])
     const [score, setScore] = useState(0)
     const [isSubmitted, setIsSubmited] = useState(false)

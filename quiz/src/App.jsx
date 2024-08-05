@@ -1,11 +1,14 @@
-import { Home } from "./components/Home";
-import { QustionsPage } from "./components/QuestionsPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Questions from './components/QuestionsPage';
 
-export default function App(){
+export default function App() {
   return (
-    <>
-      <Home/>
-      {/* <QustionsPage/> */}
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/questions' element={<Questions/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }

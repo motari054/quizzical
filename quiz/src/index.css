@@ -23,7 +23,7 @@
   margin-right: 10px;
   cursor: pointer;
   background-color: white;
-  border: solid #293264; 
+  border: solid 1px #293264; 
 }
 .main{
   display: flex;

@@ -17,9 +17,9 @@ export default function QustionsPage() {
         .then(res => res.json())
         .then(result => {
         const updatedTrivia = result.map(question => {
-            const correct = { answer: question.correctAnswer, isHeld: false, id: nanoid() };
+            const correct = { answer: question.correctAnswer, isHeld: false, id: nanoid(), isCorrect: true }
             const incorrect = question.incorrectAnswers.map(answer => ({
-            answer, id: nanoid(), isHeld: false
+            answer, id: nanoid(), isHeld: false, isCorrect: false
             }));
             let allAnswers = [...incorrect, correct]
             const shuffleAllAnswers = allAnswers.sort((a,b)=> 0.5 - Math.random())
@@ -40,7 +40,7 @@ export default function QustionsPage() {
         }));
         return { ...question, allAnswers: updatedAnswers }
       })
-    );
+    )
   }
 
   function handleSubmit(event) {
@@ -71,10 +71,11 @@ export default function QustionsPage() {
           question={trivia.question}
           choices={trivia.allAnswers}
           selectAnswer={(answerId) => selectAnswer(trivia.id, answerId)}
+          isSubmitted={isSubmitted}
         />
       ))}
       <div className="submit--button">
-        {isSubmitted && score >= 8 ? <Confetti/> : ''}
+        {isSubmitted && score >= 7 ? <Confetti/> : ''}
         {isSubmitted && (
           <div className="score--text">You scored {score} out of {trivia.length}</div>
         )}

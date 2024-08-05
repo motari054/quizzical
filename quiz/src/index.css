@@ -4,9 +4,19 @@
   font-family: 'Karla', sans-serif;
   
 }
-
+.main{
+  margin: 10px 50px;
+  padding: 0px 40px;
+  
+}
 .quiz--page{
   margin: 10px 30px;
+  color: #293264;
+  width: 70%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  
 }
 .quiz--heading{
   margin: 10px 30px;

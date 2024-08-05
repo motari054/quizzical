@@ -13,9 +13,8 @@ export function Quiz({question, choices, selectAnswer, isSubmitted}){
                             (isSelected ? '#F8BCBC' : '')
                         ) 
                         : (isSelected && '#D6DBF5'),
-                        // backgroundColor : choice.isHeld && '#D6DBF5',
-                        // border : choice.isHeld && 'none'
-                        border : isSubmitted ? (isCorrect || isSelected ? 'none' : '') : ''
+                        border : isSubmitted ? (isCorrect || isSelected ? 'none' : '') :
+                         (isSelected ? 'none' : '')
                     }
                     return (
                     <li 

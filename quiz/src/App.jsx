@@ -4,11 +4,13 @@ import Questions from './components/QuestionsPage';
 
 export default function App() {
   return (
+    <div className="main">
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/questions' element={<Questions/>}/>
       </Routes>
     </BrowserRouter>
-  );
+    </div>
+  )
 }

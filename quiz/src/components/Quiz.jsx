@@ -15,7 +15,7 @@ export function Quiz({question, choices, selectAnswer, isSubmitted}){
                         : (isSelected && '#D6DBF5'),
                         // backgroundColor : choice.isHeld && '#D6DBF5',
                         // border : choice.isHeld && 'none'
-                        border : isSelected && 'none'
+                        border : isSubmitted ? (isCorrect || isSelected ? 'none' : '') : ''
                     }
                     return (
                     <li 

@@ -7,7 +7,7 @@ export default function QustionsPage() {
     const [trivia, setTrivia] = useState([])
     const [score, setScore] = useState(0)
     const [isSubmitted, setIsSubmited] = useState(false)
-
+    console.log(trivia)
     useEffect(()=>{
     fetchATriviaQuestions()
     }, [])

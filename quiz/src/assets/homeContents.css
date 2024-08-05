@@ -1,0 +1,9 @@
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    background-color: grey;
+    width: 100%;
+    position: fixed;    
+}

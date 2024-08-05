@@ -1,0 +1,54 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    margin: 0;
+    z-index: 1000; 
+    background-color: #343a40;
+    color: white;
+    align-items: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.nav--list-items {
+    display: flex;
+    justify-content: center;
+    list-style: none;  
+    align-items: center; 
+}
+.nav--list-items >li{
+    margin: 20px;
+}
+.nav--sign-up{
+    background-color: #3cd458;
+    padding: 5px 25px;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+}
+.nav--sign-in{
+    padding: 5px 25px;
+    color: #3cd458;
+    border: solid 1px #3cd458; 
+    font-weight: bold;
+    border-radius: 20px;
+}
+.nav--take-quiz{
+    border: solid 1px #3cd458;
+    padding: 5px  25px;
+    color: #3cd458;
+}
+.logo{
+    margin-left: 20px;
+}
+
+.logo > h1{
+    font-size: x-large;
+    color: #3cd458;
+}

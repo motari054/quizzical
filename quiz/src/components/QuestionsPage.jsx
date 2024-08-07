@@ -2,12 +2,18 @@ import { Quiz } from "./Quiz";
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti'
+import { useLocation } from "react-router-dom";
 
 export default function QustionsPage() {
     const [trivia, setTrivia] = useState([])
     const [score, setScore] = useState(0)
     const [isSubmitted, setIsSubmited] = useState(false)
-    console.log(trivia)
+
+    const location = useLocation
+    const formData = location.state?.formData || {}
+    console.log(formData)
+
+    
     useEffect(()=>{
     fetchATriviaQuestions()
     }, [])

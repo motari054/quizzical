@@ -19,17 +19,17 @@ export function HomeContents(){
         {value : 'hard', label : 'Hard'},
     ]
 
-    const handleCategoryChange = (selectedOption)=> {
+    const handleCategoryChange = (e)=> {
         setFormData(prevData=> ({
             ...prevData,
-            category : selectedOption ? selectedOption.value : ''
+            category : e ? e.value : ''
         }))
     }
 
-    const handleDifficultyChange = (selectedOption)=>{
+    const handleDifficultyChange = (e)=>{
         setFormData(prevData=>({
             ...prevData,
-            difficulty : selectedOption ? selectedOption.value : ''
+            difficulty : e ? e.value : ''
         }))
     }
 

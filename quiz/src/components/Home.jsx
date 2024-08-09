@@ -5,7 +5,7 @@ import { HomeContents } from './HomeContents';
 export default function Home() {
   return (
     <div className="home--page">
-      <Navbar/>
+      {/* <Navbar/> */}
       <HomeContents/>
     </div>
   );

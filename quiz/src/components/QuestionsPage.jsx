@@ -64,7 +64,7 @@ export default function QuestionsPage() {
 
     return (
         <div className="main">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={!isSubmitted ? handleSubmit : handleTryAgain}>
                 {trivia.map(question => (
                     <Quiz
                         key={question.id}

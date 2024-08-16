@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
-import { Quiz } from './Quiz';
+import { Quiz } from '../components/Quiz';
 
 export default function QuestionsPage() {
     const [trivia, setTrivia] = useState([]);
@@ -80,7 +80,7 @@ export default function QuestionsPage() {
                         {isSubmitted && (
                             <div className="score--text">You scored {score} out of {trivia.length}</div>
                         )}
-                        <button type="submit" disabled={!everyQuestionAnswered}>
+                        <button className='button' type="submit" disabled={!everyQuestionAnswered}>
                             {isSubmitted ? 'Try Again' : 'Submit'}
                         </button>
                     </div>

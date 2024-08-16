@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 export function HomeContents() {
     return (
         <>
-            <Link to='./questions' className="start-quiz-button">
+        <section>
+            <Link to='./questions' className="button">
                 Start Quiz
             </Link>
+        </section>
         </>
     )
 }

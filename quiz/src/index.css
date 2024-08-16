@@ -1,5 +1,15 @@
 *{
   font-family: 'Karla', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root{
+  --blue: #4D5B9E;
+  --light: #f1f7f6;
+  --dark: #100e34;
+  --accent: #00df81;
 }
 
 h1{
@@ -10,17 +20,20 @@ h1{
 section{
   max-width: 80%;
   margin: auto;
+  width: 992px;
+  display: flex;
 }
 
 .quiz--answers{
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.8em;
   padding-left: 0;
 }
 
 .quiz--choice{
   margin-right: 1em;
-  background-color: white;
   border-radius: 50px;
   padding: 0.2rem 1rem;
   text-align: center;
@@ -34,10 +47,59 @@ section{
   align-items: center;
 }
 
-button{
-  background-color: #4D5B9E;
-  color: white;
+.button{
+  background-color: var(--accent);
+  color: var(--light);
   border: none;
   padding: 1em 3em;
   border-radius: 0.5em;
+  margin: 1em 0;
+  text-decoration: none;
+}
+@media(max-width: 600px){
+  section{
+    font-size: 0.85rem;
+  }
+  h1{
+    font-size: 1rem;
+  }
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5em 0;
+}
+
+.navbar{
+  background-color: var(--dark);
+  color: var(--accent);
+}
+
+.nav--items{
+  padding: 0;
+
+}
+
+.nav--items > li{
+  list-style: none;
+  margin: 0 1em;
+  cursor: pointer;
+}
+
+.nav--items > li >  a{
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.sign-in,
+.sign-up{
+  border: solid 0.05em var(--accent);
+  padding: .5em 1.4em;
+  border-radius: 2em;
+}
+.sign-in:hover,
+.sign-up:hover{
+  background-color: var(--accent);
+  color: var(--light);
 }

@@ -63,27 +63,29 @@ export default function QuestionsPage() {
     };
 
     return (
-        <div className="main">
-            <form onSubmit={!isSubmitted ? handleSubmit : handleTryAgain}>
-                {trivia.map(question => (
-                    <Quiz
-                        key={question.id}
-                        question={question.questionText}
-                        choices={question.allAnswers}
-                        selectAnswer={(answerId) => selectAnswer(question.id, answerId)}
-                        isSubmitted={isSubmitted}
-                    />
-                ))}
-                <div className="submit--button">
-                    {isSubmitted && score >= 7 && <Confetti />}
-                    {isSubmitted && (
-                        <div className="score--text">You scored {score} out of {trivia.length}</div>
-                    )}
-                    <button type="submit" disabled={!everyQuestionAnswered}>
-                        {isSubmitted ? 'Try Again' : 'Submit'}
-                    </button>
-                </div>
-            </form>
-        </div>
+        <section className='dark'>
+            <div className="main">
+                <form onSubmit={!isSubmitted ? handleSubmit : handleTryAgain}>
+                    {trivia.map(question => (
+                        <Quiz
+                            key={question.id}
+                            question={question.questionText}
+                            choices={question.allAnswers}
+                            selectAnswer={(answerId) => selectAnswer(question.id, answerId)}
+                            isSubmitted={isSubmitted}
+                        />
+                    ))}
+                    <div className="submit--button">
+                        {isSubmitted && score >= 7 && <Confetti />}
+                        {isSubmitted && (
+                            <div className="score--text">You scored {score} out of {trivia.length}</div>
+                        )}
+                        <button type="submit" disabled={!everyQuestionAnswered}>
+                            {isSubmitted ? 'Try Again' : 'Submit'}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
     );
 }

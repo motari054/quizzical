@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
+// import Home from './components/Home';
 import Questions from './components/QuestionsPage';
 
 export default function App() {
@@ -7,8 +7,8 @@ export default function App() {
     <div className="main">
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/questions' element={<Questions/>}/>
+        {/* <Route path='/' element={<Home/>}/> */}
+        <Route path='/' element={<Questions/>}/>
       </Routes>
     </BrowserRouter>
     </div>
